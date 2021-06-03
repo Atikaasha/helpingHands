@@ -1,0 +1,44 @@
+{
+  "name": "mean",
+  "version": "0.0.6",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.0",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "jquery": "^3.6.0",
+    "js-datepicker": "^5.18.0",
+    "jshint": "^2.12.0",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.8.9",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-local": "1.0.0",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "start": "nodemon server",
+    "dev": "nodemon server",
+    "lint": "node ./node_modules/.bin/eslint **/*.js"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suryakandru/OnClickCleaner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Suryakandru/OnClickCleaner/issues"
+  },
+  "homepage": "https://github.com/Suryakandru/OnClickCleaner#readme",
+  "description": ""
+}
