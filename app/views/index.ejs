@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title><%= title %></title> -->
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/@fontawesome/fontawesome-free/css/all.min.css">
+  <link rel='stylesheet' href='/Content/app.css' />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <style>
+  /* body {
+background-image: url(./Assets/images/banner.jpg);
+  } */
+  </style>
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">HelpingHands</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+
+        <% if (title == "Home"){ %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href=""><i class="fas fa-lg fa-laptop-house"></i> Home </a>
+        </li>
+
+        <% if (title == "About") { %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/aboutUs"><i class="fas fa-info-circle"></i> About </a>
+        </li>
+        <% if (title == "Contact") { %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href=""><i class="fas fa-mobile-alt"></i> Contact </a>
+        </li>
+    </div>
+  </nav>
+<body>
+    <% if ( userFullName !=null && userCategory == 'Client' && username !=='Admin') { %>
+        <div class="container text-center">
+            <h6 hidden>User id: <%=username%></h6>
+            <h2>Hello <%=userFullName%></h2><br>
+            <div class="alert alert-warning text-center">
+                <h6 style="color:brown"><%=notification%></h6>
+            </div>
+            <h2><a href="/bookService">Book a service now!</a></h2>
+            <div><a href="/customerBookings"><h3>your bookings</h3></a></div>
+            <div><a href="/userProfile/<%= userId %>"><h3>User Profile</h3></a></div>
+        </div>  
+        <div class="text-center">
+            <a href="/signout">Sign out</a>
+        </div>  
+        <% } 
+
+        else if (userFullName !=null && userCategory == 'Provider' && username !=='Admin'){ %>
+            <div class="container text-center">
+                <h2><a href="/availableBookings">Check out available tasks</a></h2>
+                <h2><a href="/acceptedBookings">Currently accepted tasks</a></h2>
+                <h2><a href="/allReviews">Client Feedbacks</a></h2>
+                <div><a href="/userProfile/<%= userId %>"><h3>User Profile</h3></a></div>
+                <a href="/signout">Sign out</a>
+            </div>            
+        <% }
+        else if (username =='Admin'){ %>
+          <div class="container text-center">
+            <h1>OnClickCleaner Admin Panel</h1>
+              <h3><a href="/admin/allUsers">All Users</a></h3>
+              <h3><a href="/admin/allBookings">All Bookings</a></h3>
+              <a href="/signout">Sign out</a>
+          </div>            
+      <% }
+        else { %>
+            <div >
+                <div class="row">
+                    <div class="col-8">
+                        <p style="font-size:large;color:black">
+                            <img src=".\Assets\images\banner.jpeg"/></p>     
+                    </div>
+                    <div class="col-4">
+                        <h1>New to HelpingHands? <br><a style="color:darkmagenta;" href="/signup">Register</a></h1><p></p>
+                        <!-- <h2>Already have an account? <br><a href="/signin">Signin</a></a></h2>  -->
+                        <h2>Already have an account?</h2>
+                        <div class="alert alert-warning text-center"> 
+                          <% for(var i in messages) { %>
+                              <div class="flash"><%= messages[i] %></div>
+                           <% } %>
+                        </div>
+                        <form action="/signin" method="post">
+                            <div class="container" style="width: 60%; float: left;">
+                              <h2> Sign In as User</h2>
+                                  <label for="Username">Username: </label>
+                                  <input class="form-control" type="text" class="fields" name="username" />
+                                  <label for="password">Password:</label>
+                                  <input class="form-control" type="password" class="fields" name="password" />
+                                  <br>
+                                  <button class="btn btn-primary" type="submit">Sign In</button>
+                            </div>
+                          <!-- Render the OAuth authentication links  -->
+                      </form>
+                    </div>
+                </div>
+            </div>            
+        <% } %>       
+        <br>    
+</body>
+
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Scripts/app.js"></script>
+
+<footer>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+      <h6 class="display-6 navbar-text">&copy; Team003COMP231 Copyright 2021. All Rights reserved.</h6>
+    </nav>
+  </footer>
+</html>
