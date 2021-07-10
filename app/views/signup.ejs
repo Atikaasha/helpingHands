@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title><%= title %></title> -->
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel='stylesheet' href='/Content/app.css' />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">HelpingHands</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+
+        <% if (title == "Home"){ %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/"><i class="fas fa-lg fa-laptop-house"></i> Home </a>
+        </li>
+
+        <% if (title == "About") { %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/aboutUs"><i class="fas fa-info-circle"></i> About </a>
+        </li>
+
+        <% if (title == "Contact") { %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href=""><i class="fas fa-mobile-alt"></i> Contact </a>
+        </li>
+    </div>
+  </nav>
+     
+  <!--Main Section-->
+
+    <body>
+  	<!-- Display flash messages  -->
+      <div class="alert alert-warning text-center">
+        <% for(var i in badmessage) { %>
+            <div class="flash"><%= badmessage[i] %></div>
+         <% } %>
+      </div>
+	<!-- Render the signup form  -->
+    <div class="container" style="width: 400px;">
+        <form action="/signup" method="post">
+                <h2> Sign Up as User</h2>
+                    <label for="category">User Category:</label>
+                    <input name="category" type="radio" value ="Provider" name="Provider">Service Provider</input>
+                    <input name="category" type="radio" value ="Client" name="Client">Client<br />
+                    <label for="firstName">First Name:</label>
+                    <input class="form-control" type="text" class ="fields" name="firstName" />
+                    <label for="lastName">Last Name:</label>
+                    <input class="form-control" type="text" class ="fields" name="lastName" />
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="text" class ="fields" name="email" />
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" class ="fields" name="username" />
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" class ="fields" name="password" />
+                    <br>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>   
+        <div class="text-center">
+          <a href="/"> Home Page</a>
+      </div>  
+    </div>   
+</body>
+
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Scripts/app.js"></script>
+
+<footer>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+      <h6 class="display-6 navbar-text">&copy; Team002COMP231 Copyright 2021. All Rights reserved.</h6>
+    </nav>
+  </footer>
+</html>
