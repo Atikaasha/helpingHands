@@ -25,9 +25,9 @@ const ServiceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    cleaner: {
+    serviceProvider: {
         type: String,
-        default: 'Waiting for cleaner'
+        default: 'Not assigned yet'
     },
     review:{
         rating: Number,
