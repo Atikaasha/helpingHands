@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+       <div class="container">
+        <div row justify-content-center>
+            <h3 style="color:darkmagenta">Thank you for your cleaning request. A cleaner will be assigned for this task soon!</h3><br>
+            <div class="col-auto">
+                <table class="table table-dark">
+                    <tr>
+                        <td><b>Customer Name</b></td>
+                        <td><%= userFullName%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Address</b></td>
+                        <td><%= address%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Date</b></td>
+                        <td><%= date%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Current Status</b></td>
+                        <td><%= status%></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="text-center">
+                <a href="/customerBookings">Check Your Bookings</a> 
+            </div>
+        </div>  
+        <div class="text-center">
+            <a href="/"> Home Page</a>
+        </div>      
+        <div class="text-center">
+            <a href="/signout">Sign out</a>
+        </div>
+    </div>
+</body>
+</html>
