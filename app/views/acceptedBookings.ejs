@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<!-- Use the 'title' property to render a title element  -->
+	<h1 class="text-center"> Requests Accepted by <%= userFullName %></h1><br>
+  <form method="POST" action="/editBooking">
+    <div class="row justify-content-center">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <table class="table borderless content-center">   
+            <thead>
+              <tr>
+                <th hidden scope="col">Id</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Service Type</th>
+                <th scope="col">Service Date</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Current Status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>          
+              <% bookings.forEach(function(bookings){ %>
+                  <tbody>
+                      <tr>
+                        <td hidden><input readonly class="border-0" type="text" name="bookingId" 
+                          value="<%= bookings._id %>" />
+                        </td>
+                        <td><input readonly class="border-0" type="text" name="bookingId" 
+                          value="<%= bookings.customer.firstName +' '+ bookings.customer.lastName %>" />
+                        </td>
+                        <td><textarea readonly class="border-0" rows="3" cols="40" wrap="soft" name="address" ><%= bookings.addressLine1 + ", " + 
+                          bookings.addressLine2 + ", " +  
+                          bookings.city + ", " + 
+                          bookings.province + ", " + 
+                          bookings.postalCode %>
+                        </textarea>
+                        </td>
+                        <td><input size="10" readonly class="border-0" type="text" name="serviceType" 
+                          value="<%= bookings.serviceType %>" />
+                        </td>
+                        <td><input size="10" readonly class="border-0" type="text" name="serviceDate" 
+                          value="<%= bookings.serviceDate %>" />
+                        </td>
+                        <td><input size="10" readonly class="border-0" type="text" name="date" 
+                          value="<%= bookings.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> %>" />
+                        </td>
+                        <td><input size="10" readonly class="border-0" type="text" name="status" 
+                          value="<%= bookings.status %>" />
+                        </td>
+                        <% if(bookings.status == 'Accepted'){ %>
+                          <td><input class="btn btn-success" type="submit" formaction="/acceptedBookings/<%= bookings._id %>?_method=PUT" method="POST" value="Complete Task" /></td>
+                          <% } 
+
+                        else{ %>
+                          <td><input class="btn btn-secondary" type="submit" disabled value="Completed" /></td>
+                          <% } %>   
+                      </tr>                       
+                    </tbody>             
+              <% })%>     
+          </table>
+        </div>        
+      </div>
+  </div>
+  </form>    
+<div class="text-center">
+  <a href="/"> Home Page</a>
+</div>  
+</body>
+</html>
