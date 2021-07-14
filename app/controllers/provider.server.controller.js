@@ -82,7 +82,7 @@ exports.update = function (req, res, next) {
      //List of all bookings accepted by a service provider
      exports.bookingsAcceptedByProvider = function (req, res, next) {
         var userName = session.userName;
-        console.log("Cleaner: " +userName);
+        console.log("Provider: " +userName);
         User.
             findOne({ serviceProvider: session.userFullName }, (err, user) => {
                 if (err) { return getErrorMessage(err); }
@@ -104,4 +104,36 @@ exports.update = function (req, res, next) {
                     });
             });
     };
+
+    exports.complete = function (req, res, next) {
+        var serviceProvider = session.userFullName;
+        var username = session.userName;
+        console.log(serviceProvider);
+        Service.findByIdAndUpdate(
+            { _id: req.service._id },
+            { status: "Completed"},
+            function(err, result) {
+              if (err) {
+                res.send(err);
+              } else {
+                console.log("Update in action");
+                //res.redirect('/acceptedBookings');
+                //console.log(req.service);
+              }
+            }
+          );
+          User.findByIdAndUpdate(
+            { _id: req.service.customer._id },
+            { notification: req.service.serviceType+" request completed by "+ serviceProvider},
+            function(err, result) {
+              if (err) {
+                res.send(err);
+              } else {
+                console.log("Completion in action");
+                res.redirect('/acceptedBookings');
+              }
+            }
+          );
+    };
+
 
