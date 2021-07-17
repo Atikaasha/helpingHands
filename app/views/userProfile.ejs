@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Use the 'title' property to render a page title  -->
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body> 
+    <div class="container">
+        <div row justify-content-center>
+            <h1 class="text-center">Profile of <%= user.firstName%> <%= user.lastName%></h1><br>
+            <div class="col-auto">
+                <table class="table table-dark">
+                    <tr>
+                        <td><b>User Category</b></td>
+                        <td><%= user.category%></td>
+                    </tr>
+                    <tr>
+                        <td><b>First Name</b></td>
+                        <td><%= user.firstName%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Last Name</b></td>
+                        <td><%= user.lastName%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Email</b></td>
+                        <td><%= user.email%></td>
+                    </tr>
+                    <tr>
+                        <td><b>User Name</b></td>
+                        <td><%= user.username%></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="text-center">
+                <a href="/editProfile/<%= user._id %>">Edit Profile</a> 
+            </div>
+        </div>  
+        <div class="text-center">
+            <a href="/"> Main Page</a>
+        </div>  
+    </div>
+</body>
+</html>

@@ -126,3 +126,11 @@ exports.findUserById = function (req, res, next, _id) {
 		}
 	});
 };
+exports.readProfile = function(req, res) {
+	//var updatedService = req.service;
+	console.log('In-read'+ req.user);
+	//res.json(req.user);
+	var jsonUser = JSON.parse(JSON.stringify(req.user));
+	res.render('userProfile', { title: 'User Profile', user: jsonUser} );
+};
+

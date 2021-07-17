@@ -13,4 +13,5 @@ module.exports = function (app) {
         }));
     app.get('/signout', users.signout);
     app.param('_id', users.findUserById);
+    app.route('/userProfile/:_id').get(users.readProfile);
 };
