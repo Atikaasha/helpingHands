@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Use the 'title' property to render a page title  -->
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  	<!-- Display flash messages  -->
+      <div class="alert alert-warning text-center">
+        <% for(var i in badmessage) { %>
+            <div class="flash"><%= badmessage[i] %></div>
+         <% } %>
+      </div>
+	<!-- Render the signup form  -->
+    <div class="container" style="width: 400px;">
+        <form action="/editProfile/<%= user._id %>?_method=PUT" method="POST"" method="post">
+                <h2> Edit Profile</h2>
+                    <label for="category">User Category:</label>
+                    <% if ( user.category == 'Client') { %>
+                        <input name="category" type="radio" value ="Cleaner" name="Cleaner">Cleaner</input>
+                        <input name="category" type="radio" value ="Customer" name="Customer" checked="checked">Customer<br />
+                    <% } 
+                    else { %>
+                        <input name="category" type="radio" value ="Cleaner" name="Cleaner" checked="checked">Cleaner</input>
+                        <input name="category" type="radio" value ="Customer" name="Customer">Customer<br />
+                    <% } %>   
+                    
+                    <label for="firstName">First Name:</label>
+                    <input class="form-control" type="text" class ="fields" name="firstName" value="<%= user.firstName%>" />
+                    <label for="lastName">Last Name:</label>
+                    <input class="form-control" type="text" class ="fields" name="lastName" value="<%= user.lastName%>"/>
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="text" class ="fields" name="email" value="<%= user.email%>"/>
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" class ="fields" name="username" value="<%= user.username%>"/>
+                    <label for="password">Password:</label>
+                    <input required class="form-control" type="password" class ="fields" name="password" value=""/>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>  
+        <div class="text-center">
+            <a href="/"> Main Page</a>
+        </div>   
+    </div>   
+</body>
+</html>
