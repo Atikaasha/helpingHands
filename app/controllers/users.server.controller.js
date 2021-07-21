@@ -133,4 +133,36 @@ exports.readProfile = function(req, res) {
 	var jsonUser = JSON.parse(JSON.stringify(req.user));
 	res.render('userProfile', { title: 'User Profile', user: jsonUser} );
 };
+exports.read = function(req, res) {
+	//var updatedService = req.service;
+	console.log('In-read'+ req.user);
+	//res.json(req.user);
+	var jsonUser = JSON.parse(JSON.stringify(req.user));
+	console.log("In editProfile: "+ jsonUser);
+	res.render('editProfile', { title: 'Edit Profile', user: jsonUser, badmessage: req.flash('error')} );
+};
 
+exports.update = function (req, res, next) {
+	console.log("Req.Body: "+req.body.username);
+	User.findByIdAndUpdate(req.user._id, req.body,{new: true}, function (err, user) {
+		if (err) {
+		  return next(err);
+		} else {
+		  user.password = req.body.password;
+		  user.firstName = req.body.firstName
+		  user.lastName = req.body.lastName
+		  user.username = req.body.username
+		  console.log("New user: "+ user);
+		  user.save(function (err, user) {
+			if (err) {
+			  res.send("Error: ", err);
+			  //console.log("Error!!!:")
+			} else {
+				//console.log("No Error!!!:"+user)
+				res.redirect('/')
+			}
+		  })
+		}
+	  });
+
+}

@@ -14,4 +14,5 @@ module.exports = function (app) {
     app.get('/signout', users.signout);
     app.param('_id', users.findUserById);
     app.route('/userProfile/:_id').get(users.readProfile);
+    app.route('/editProfile/:_id').get(users.read).put(users.update);
 };
