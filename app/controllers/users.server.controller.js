@@ -178,3 +178,15 @@ exports.AllUsers = function (req, res, next) {
         }
     });
 };
+
+//Delete an user
+exports.deleteByUserId = function (req, res, next) {
+	console.log("User deletion initiated");
+	User.findOneAndRemove({
+		_id: session.user._id
+	}, function (err, user) {
+
+		if (err) throw err;    
+	});   
+	res.redirect('/admin/allUsers');         
+};

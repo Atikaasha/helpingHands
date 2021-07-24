@@ -16,4 +16,5 @@ module.exports = function (app) {
     app.route('/userProfile/:_id').get(users.readProfile);
     app.route('/editProfile/:_id').get(users.read).put(users.update);
     app.route('/admin/allUsers').get(users.AllUsers);
+    app.route('/admin/deleteUser/:_id').delete(users.deleteByUserId);
 };

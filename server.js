@@ -12,7 +12,7 @@ const configurePassport = require('./config/passport');
 
 // Create a new Mongoose connection instance
 const db = configureMongoose();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 // Create a new Express application instance
 const app = configureExpress();
 
