@@ -164,5 +164,17 @@ exports.update = function (req, res, next) {
 		  })
 		}
 	  });
-
 }
+exports.AllUsers = function (req, res, next) {
+    User.find({}, (err, users) => {
+        if (err) {
+            // Call the next middleware with an error message
+            return next(err);
+        } else {
+            res.render('allUsers', {
+                title: 'All users',
+                users: users
+            });
+        }
+    });
+};

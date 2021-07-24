@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<!-- Use the 'title' property to render a title element  -->
+	<h1 class="text-center"> List of all users</h1><br>
+  <form method="POST" action="/editProfile">
+    <div class="row justify-content-center">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <table class="table borderless content-center">   
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">User Category</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>          
+              <% users.forEach(function(users){ %>
+                  <tbody>
+                      <tr>
+                        <td><input readonly class="border-0" type="text" name="serviceType" 
+                          value="<%= users.firstName %>" />
+                        </td>
+                        <td><input readonly class="border-0" type="text" name="serviceDate" 
+                          value="<%= users.lastName %>" />
+                        </td>
+                        <td><input readonly class="border-0" type="text" name="date" 
+                          value="<%= users.email %>" />
+                        </td>
+                        <td><input readonly class="border-0" type="text" name="status" 
+                          value="<%= users.username %>" />
+                        </td>
+                        <td><input size="10" readonly class="border-0" type="text" name="cleaner" 
+                          value="<%= users.category %>" />
+                        </td> 
+                          <td><a href="/editProfile/<%= users._id %>"><input style="width: 100px;" class="btn btn-success btn-block"  value="Edit" /></a></td>
+                          <td><input class="btn btn-danger" type="submit" formaction="/admin/deleteUser/<%= users._id %>?_method=DELETE" value="Delete" /></td>                       
+                      </tr>                       
+                    </tbody>             
+              <% })%>     
+          </table>
+        </div>         
+      </div>
+  </div>
+  </form>    
+<br>
+<div class="text-center">
+  <a href="/"> Main Page</a>
+</div>   
+</body>
+</html>
