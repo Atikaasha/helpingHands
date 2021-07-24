@@ -80,7 +80,7 @@ exports.completeBookingService = function (req, res) {
                 //find the posts from this author
                 Service.
                     find({
-                        customer: req.id
+                        client: req.id
                     }, (err, bookings) => {
                         if (err) { return getErrorMessage(err); }
                         //res.json(comments);
