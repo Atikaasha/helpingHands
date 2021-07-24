@@ -8,4 +8,6 @@ module.exports = function (app) {
     app.post('/thanks', service.completeBookingService);
     app.route('/customerBookings').get(service.bookingsByCustomer);
     app.param('_id', service.findServiceById);
+    app.route('/editBooking/:_id').get(service.findServiceById).post(service.editBooking);
+    app.route('/customerBookings/:_id').get(service.read).put(service.update).delete(service.deleteByServiceId);
 };

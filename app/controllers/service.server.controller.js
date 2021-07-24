@@ -114,4 +114,46 @@ exports.completeBookingService = function (req, res) {
         });
     };
 
+    exports.editBooking = function (req, res, next){
+        req.service = session.service;
+            var jsonService = JSON.parse(JSON.stringify(req.service));
+            res.render('editBooking', { title: 'Edit Service', booking: jsonService} );
+            console.log("In editBooking");
+    };
+
+    exports.update = function (req, res, next) {
+        req.service=req.service //read the service from request's body
+        console.log("Update Booking: "+ req.service._id);
+        //Use the 'User' static 'findByIdAndUpdate' method to update a specific user
+        Service.findByIdAndUpdate(req.service._id, req.body, (err, service) => {
+            if (err) {
+                // Call the next middleware with an error message
+                return next(err);
+            } else {
+                if(session.userName != 'Admin'){
+                    res.redirect('/customerBookings')
+                }     
+                else{
+                    res.redirect('/admin/allBookings')
+                }                      
+            }
+        })
+    };
+    exports.deleteByServiceId = function (req, res, next) {
+        //
+        console.log("Service Id: "+ session.service._id);
+        Service.findOneAndRemove({
+            _id: session.service._id
+        }, function (err, user) {
+    
+            if (err) throw err;    
+        }); 
+        if(session.userName != 'Admin'){
+            res.redirect('/customerBookings'); 
+        }  
+        else{
+            res.redirect('/admin/allBookings'); 
+        }
+    };
+
 

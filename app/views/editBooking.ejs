@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Use the 'title' property to render a page title  -->
+    <title>
+        <%= title %>
+    </title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+        <div class="container text-center">
+            <h2>Edit you service request!</h2>
+        </div>
+            <div class="container" style="width: 400px;">
+                <form class="form-signin" action="/customerBookings/<%= booking._id %>?_method=PUT" method="POST">
+                        <h4>Location Details</h4>  
+                            <label for="addressLine1">Address Line - 1:</label>
+                            <input class="form-control" type="text" class ="fields" name="addressLine1" value="<%= booking.addressLine1  %>"/>
+                            <br>
+                            <label for="addressLine2">Address Line - 2:</label>
+                            <input class="form-control" type="text" class ="fields" name="addressLine2" value="<%= booking.addressLine2  %>" />
+                            <br>  
+                            <label for="city">City:</label>
+                            <input class="form-control" type="text" class ="fields" name="city" value="<%= booking.city  %>" />
+                            <br>
+                        <label for="province">Province:</label>
+                        <select name="province" value="<%= booking.province  %>">
+                            <option value="ON">ON</option>
+                            <option value="BC">BC</option>
+                            <option value="AB">AB</option>
+                        </select> 
+                        <br>
+                            <label for="postalCode">Postal Code:</label>
+                            <input class="form-control" type="text" class ="fields" name="postalCode" value="<%= booking.postalCode  %>"/>
+                        <br>
+                        <h4>Service Details</h4>
+                        <br>
+                        <select class="form-control" name="serviceType" value="<%= booking.serviceType  %>">
+                            <option value="Electrical">Electrical</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Carpentry">Carpentry</option>
+                            <option value="Duct Cleaning">Duct Cleaning</option>
+                            <option value="Lawn Mowing">Lawn Mowing</option>
+                            <option value="Roofing">Roofing</option>
+                        </select> 
+                        <br>
+                            <label for="serviceDate">Service Date:</label>
+                            <input class="form-control" type="text" class ="fields" name="serviceDate" value="<%= booking.serviceDate  %>"/>
+                        <br>
+                        <button class="btn btn-primary text-center" type="submit" name="submit">Save</button>
+                </form>   
+                <div class="text-center">
+                    <a href="/"> Main Page</a>
+                </div>  
+            </div>            
+        <br>  
+        <script>
+            $(document).ready(function(){
+              var date_input=$('input[name="serviceDate"]'); //our date input has the name "date"
+              var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+              var options={
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+              };
+              date_input.datepicker(options);
+            })
+        </script>      
+</body>
+</html>
