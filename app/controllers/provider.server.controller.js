@@ -9,13 +9,14 @@ exports.display = function(req, res) {
         }else{
             //console.log("Available bookings: "+bookings)
         }
-    }).populate('customer').exec((err, customers)=>{
+    }).populate('client').exec((err, customers)=>{
         //console.log(`Populated: `, customers)
         res.render(
             "availableBookings", {
                 title: 'Available Requests',
-                customers: customers, 
+                customers: customers 
         });
+        console.log("booking list: "+customers)
     })
   };
 

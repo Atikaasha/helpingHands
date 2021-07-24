@@ -16,6 +16,7 @@ exports.customerByUserName = function (req, res, next) {
         } else {
             // Set the 'req.user' property
             req.user = user;
+            session.user = user;
             session.userId = user._id;
             session.userFirstName = user.firstName;
             //parse it to a JSON object
@@ -41,7 +42,7 @@ exports.completeBookingService = function (req, res) {
         postalCode: req.body.postalCode,
         serviceType: req.body.serviceType,
         serviceDate: req.body.serviceDate,
-        customer: session.userId });
+        client: session.user });
         //console.log("Customer id: "+ session.userId);
      service.save(function (err) {
         
@@ -61,6 +62,7 @@ exports.completeBookingService = function (req, res) {
              });          
          }
      });
+     console.log("Just created: "+ service)
 };
 
      //List of all bookings by a customer
@@ -155,5 +157,47 @@ exports.completeBookingService = function (req, res) {
             res.redirect('/admin/allBookings'); 
         }
     };
+
+     //Render review page
+     exports.reviewByServiceId = function (req, res, next){
+        req.service = session.service;
+            var jsonService = JSON.parse(JSON.stringify(req.service));
+            res.render('addReview', { title: 'Add Review', booking: jsonService} );
+    };
+    //Add a review
+    exports.addReview = function (req, res, next) {
+        req.service=req.service //read the service from request's body
+        console.log("Adding review: "+ req.service);
+        Service.findByIdAndUpdate(
+            { _id: req.service._id },
+            { review: req.body },
+            function(err, result) {
+              if (err) {
+                res.send(err);
+              } else {
+                console.log("Adding a review"+ req.service);
+                res.redirect('/customerBookings');
+              }
+            }
+          );
+    };
+
+    exports.AllBookings = function (req, res, next) {
+    Service.find({}, function(err, bookings){
+        if(err){
+            return next(err);        
+        }else{
+            console.log("Available bookings: "+bookings)
+        }
+    }).populate('client').exec((err, bookings)=>{
+        //console.log(`Populated: `, customers)
+        res.render(
+            "allBookings", {
+                title: 'All Bookings',
+                bookings: bookings, 
+        });
+    })
+};
+
 
 
