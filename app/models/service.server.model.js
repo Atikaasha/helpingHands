@@ -21,7 +21,7 @@ const ServiceSchema = new Schema({
         type: String,
         default: 'Requested'
     },
-    customer: {
+    client: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

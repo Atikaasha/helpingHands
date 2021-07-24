@@ -164,5 +164,29 @@ exports.update = function (req, res, next) {
 		  })
 		}
 	  });
-
 }
+exports.AllUsers = function (req, res, next) {
+    User.find({}, (err, users) => {
+        if (err) {
+            // Call the next middleware with an error message
+            return next(err);
+        } else {
+            res.render('allUsers', {
+                title: 'All users',
+                users: users
+            });
+        }
+    });
+};
+
+//Delete an user
+exports.deleteByUserId = function (req, res, next) {
+	console.log("User deletion initiated");
+	User.findOneAndRemove({
+		_id: session.user._id
+	}, function (err, user) {
+
+		if (err) throw err;    
+	});   
+	res.redirect('/admin/allUsers');         
+};

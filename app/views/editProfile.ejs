@@ -18,12 +18,12 @@
                 <h2> Edit Profile</h2>
                     <label for="category">User Category:</label>
                     <% if ( user.category == 'Client') { %>
-                        <input name="category" type="radio" value ="Cleaner" name="Cleaner">Cleaner</input>
-                        <input name="category" type="radio" value ="Customer" name="Customer" checked="checked">Customer<br />
+                        <input name="category" type="radio" value ="Provider" name="Provider">Service Provider</input>
+                        <input name="category" type="radio" value ="Client" name="Client" checked="checked">Client<br />
                     <% } 
                     else { %>
-                        <input name="category" type="radio" value ="Cleaner" name="Cleaner" checked="checked">Cleaner</input>
-                        <input name="category" type="radio" value ="Customer" name="Customer">Customer<br />
+                        <input name="category" type="radio" value ="Provider" name="Provider" checked="checked">Service Provider</input>
+                        <input name="category" type="radio" value ="Client" name="Client">Client<br />
                     <% } %>   
                     
                     <label for="firstName">First Name:</label>

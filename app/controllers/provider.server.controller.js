@@ -9,12 +9,12 @@ exports.display = function(req, res) {
         }else{
             //console.log("Available bookings: "+bookings)
         }
-    }).populate('customer').exec((err, customers)=>{
+    }).populate('client').exec((err, customers)=>{
         //console.log(`Populated: `, customers)
         res.render(
             "availableBookings", {
                 title: 'Available Requests',
-                customers: customers, 
+                customers: customers 
         });
     })
   };
@@ -66,7 +66,7 @@ exports.update = function (req, res, next) {
         }
       );
       User.findByIdAndUpdate(
-        { _id: req.service.customer._id },
+        { _id: req.service.client._id },
         { notification: req.service.serviceType+" request accepted by "+ serviceProvider },
         function(err, result) {
           if (err) {
@@ -93,7 +93,7 @@ exports.update = function (req, res, next) {
                         serviceProvider: session.userFullName
                     }, (err, bookings) => {
                         if (err) { return getErrorMessage(err); }
-                    }).populate('customer').exec((err, bookings)=>{
+                    }).populate('client').exec((err, bookings)=>{
                         //console.log(`Populated: `, customers)
                         res.render(
                             "acceptedBookings", {
@@ -123,7 +123,7 @@ exports.update = function (req, res, next) {
             }
           );
           User.findByIdAndUpdate(
-            { _id: req.service.customer._id },
+            { _id: req.service.client },
             { notification: req.service.serviceType+" request completed by "+ serviceProvider},
             function(err, result) {
               if (err) {
