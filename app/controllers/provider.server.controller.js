@@ -136,4 +136,24 @@ exports.update = function (req, res, next) {
           );
     };
 
+    exports.allReviews = function (req, res, next) {
+      //console.log("In customer feedback page. session user fullname: " +session.userFullName);
+      Service.find(
+        {cleaner: session.userFullName, review:{$ne:null}},
+        function(err, bookings){
+        if(err){
+            return next(err);        
+        }else{
+            //console.log("Available bookings: "+bookings)
+        }
+    }).populate('client').exec((err, services)=>{
+        //console.log(`Populated: `, customers)
+        res.render(
+            "allReviews", {
+                title: 'Client Feedbacks',
+                services: services, 
+        });
+    })
+  };
+
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<!-- Use the 'title' property to render a title element  -->
+  <form method="POST" action="">
+    <div class="row justify-content-center">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <table class="table borderless content-center">   
+            <thead>
+              <tr>
+                <th scope="col">Client Name</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Recommended</th>
+              </tr>
+            </thead>          
+              <% services.forEach(function(services){ %>
+                  <tbody>
+                      <tr>
+                        <td><input readonly class="border-0" type="text" name="customer" 
+                          value="<%= services.client.fullName %> " />
+                        </td>
+                        <td><input readonly class="border-0" type="text" name="rating" 
+                            value="<%= services.review.rating %>/5" />
+                          </td>
+                          <td><input readonly class="border-0" type="text" name="comment" 
+                            value="<%= services.review.comment %>" />
+                          </td>
+                        <td>
+                          <%if (services.review.recommend ==false) { %>
+                            <input readonly class="border-0" type="text" name="recommend" 
+                            value="No" />
+                          <% } 
+                          else{ %>
+                            <input readonly class="border-0" type="text" name="recommend" 
+                            value="Yes" />
+                          <%}%>
+                         </td> 
+                        <!-- <td><input readonly class="border-0" type="text" name="recommend" 
+                          value="<%= services.review.recommend %>" />
+                        </td>  -->
+                      </tr>                       
+                    </tbody>             
+              <% })%>     
+          </table>
+        </div>        
+      </div>
+  </div>
+  </form>    
+  <div class="text-center">
+    <a href="/"> Main Page</a>
+</div>   
+</body>
+</html>
