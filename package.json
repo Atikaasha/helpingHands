@@ -1,5 +1,5 @@
 {
-  "name": "mean",
+  "name": "helppingHands",
   "version": "0.0.6",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
@@ -32,13 +32,13 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Suryakandru/OnClickCleaner.git"
+    "url": "https://github.com/Atikaasha/helpingHands"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Suryakandru/OnClickCleaner/issues"
+    "url": "https://github.com/Atikaasha/helpingHands/issues"
   },
-  "homepage": "https://github.com/Suryakandru/OnClickCleaner#readme",
-  "description": ""
+  "homepage": "https://github.com/Atikaasha/helpingHands",
+  "description": "Term Project for COMP-231"
 }
