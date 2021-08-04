@@ -5,71 +5,113 @@
 	<title><%= title %></title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
-	<!-- Use the 'title' property to render a title element  -->
-	<h1 class="text-center"> Requests Accepted by <%= userFullName %></h1><br>
-  <form method="POST" action="/editBooking">
-    <div class="row justify-content-center">
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">HelpingHands</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <% if (title == "Home"){ %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href=""><i class="fas fa-lg fa-laptop-house"></i> Home </a>
+        </li>
+  
+        <% if (title == "About") { %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/aboutUs"><i class="fas fa-info-circle"></i> About </a>
+        </li>
+        <% if (title == "Contact") { %>
+        <li class="nav-item active">
+        <% } else  { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href=""><i class="fas fa-mobile-alt"></i> Contact </a>
+        </li>
+    </div>
+  </nav>
+  <body>
+    <!-- Use the 'title' property to render a title element  -->
+    <h1 class="text-center"> Requests Accepted by <%= userFullName %></h1><br>
+    <form method="POST" action="/editBooking">
       <div class="row justify-content-center">
-        <div class="col-auto">
-          <table class="table borderless content-center">   
-            <thead>
-              <tr>
-                <th hidden scope="col">Id</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Service Type</th>
-                <th scope="col">Service Date</th>
-                <th scope="col">Date Created</th>
-                <th scope="col">Current Status</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>          
-              <% bookings.forEach(function(bookings){ %>
-                  <tbody>
-                      <tr>
-                        <td hidden><input readonly class="border-0" type="text" name="bookingId" 
-                          value="<%= bookings._id %>" />
-                        </td>
-                        <td><input readonly class="border-0" type="text" name="bookingId" 
-                          value="<%= bookings.client.firstName +' '+ bookings.client.lastName %>" />
-                        </td>
-                        <td><textarea readonly class="border-0" rows="3" cols="40" wrap="soft" name="address" ><%= bookings.addressLine1 + ", " + 
-                          bookings.addressLine2 + ", " +  
-                          bookings.city + ", " + 
-                          bookings.province + ", " + 
-                          bookings.postalCode %>
-                        </textarea>
-                        </td>
-                        <td><input size="10" readonly class="border-0" type="text" name="serviceType" 
-                          value="<%= bookings.serviceType %>" />
-                        </td>
-                        <td><input size="10" readonly class="border-0" type="text" name="serviceDate" 
-                          value="<%= bookings.serviceDate %>" />
-                        </td>
-                        <td><input size="10" readonly class="border-0" type="text" name="date" 
-                          value="<%= bookings.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> %>" />
-                        </td>
-                        <td><input size="10" readonly class="border-0" type="text" name="status" 
-                          value="<%= bookings.status %>" />
-                        </td>
-                        <% if(bookings.status == 'Accepted'){ %>
-                          <td><input class="btn btn-success" type="submit" formaction="/acceptedBookings/<%= bookings._id %>?_method=PUT" method="POST" value="Complete Task" /></td>
-                          <% } 
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <table class="table borderless content-center">   
+              <thead>
+                <tr>
+                  <th hidden scope="col">Id</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Service Type</th>
+                  <th scope="col">Service Date</th>
+                  <th scope="col">Date Created</th>
+                  <th scope="col">Current Status</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>          
+                <% bookings.forEach(function(bookings){ %>
+                    <tbody>
+                        <tr>
+                          <td hidden><input readonly class="border-0" type="text" name="bookingId" 
+                            value="<%= bookings._id %>" />
+                          </td>
+                          <td><input readonly class="border-0" type="text" name="bookingId" 
+                            value="<%= bookings.client.firstName +' '+ bookings.client.lastName %>" />
+                          </td>
+                          <td><textarea readonly class="border-0" rows="3" cols="40" wrap="soft" name="address" ><%= bookings.addressLine1 + ", " + 
+                            bookings.addressLine2 + ", " +  
+                            bookings.city + ", " + 
+                            bookings.province + ", " + 
+                            bookings.postalCode %>
+                          </textarea>
+                          </td>
+                          <td><input size="10" readonly class="border-0" type="text" name="serviceType" 
+                            value="<%= bookings.serviceType %>" />
+                          </td>
+                          <td><input size="10" readonly class="border-0" type="text" name="serviceDate" 
+                            value="<%= bookings.serviceDate %>" />
+                          </td>
+                          <td><input size="10" readonly class="border-0" type="text" name="date" 
+                            value="<%= bookings.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> %>" />
+                          </td>
+                          <td><input size="10" readonly class="border-0" type="text" name="status" 
+                            value="<%= bookings.status %>" />
+                          </td>
+                          <% if(bookings.status == 'Accepted'){ %>
+                            <td><input class="btn btn-success" type="submit" formaction="/acceptedBookings/<%= bookings._id %>?_method=PUT" method="POST" value="Complete Task" /></td>
+                            <% } 
+  
+                          else{ %>
+                            <td><input class="btn btn-secondary" type="submit" disabled value="Completed" /></td>
+                            <% } %>   
+                        </tr>                       
+                      </tbody>             
+                <% })%>     
+            </table>
+          </div>        
+        </div>
+    </div>
+    </form>    
+  <div class="text-center">
+    <a href="/"> Home Page</a>
+  </div>  
+  </body>
+</div>
 
-                        else{ %>
-                          <td><input class="btn btn-secondary" type="submit" disabled value="Completed" /></td>
-                          <% } %>   
-                      </tr>                       
-                    </tbody>             
-              <% })%>     
-          </table>
-        </div>        
-      </div>
-  </div>
-  </form>    
-<div class="text-center">
-  <a href="/"> Home Page</a>
-</div>  
-</body>
+<div>
+  <footer>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; bottom: 0; width: 98%;  margin-left: 1%; margin-right: 1%;">
+      <h6 class="display-6 navbar-text">&copy; Team003-COMP231 Copyright 2021. All Rights reserved.</h6>
+    </nav>
+  </footer>
+</div>
 </html>

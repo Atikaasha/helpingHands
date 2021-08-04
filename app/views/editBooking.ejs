@@ -11,66 +11,109 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
-        <div class="container text-center">
-            <h2>Edit you service request!</h2>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">HelpingHands</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+    
+            <% if (title == "Home"){ %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
+              <a class="nav-link" href=""><i class="fas fa-lg fa-laptop-house"></i> Home </a>
+            </li>
+    
+            <% if (title == "About") { %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
+              <a class="nav-link" href="/aboutUs"><i class="fas fa-info-circle"></i> About </a>
+            </li>
+            <% if (title == "Contact") { %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
+              <a class="nav-link" href=""><i class="fas fa-mobile-alt"></i> Contact </a>
+            </li>
         </div>
-            <div class="container" style="width: 400px;">
-                <form class="form-signin" action="/customerBookings/<%= booking._id %>?_method=PUT" method="POST">
-                        <h4>Location Details</h4>  
-                            <label for="addressLine1">Address Line - 1:</label>
-                            <input class="form-control" type="text" class ="fields" name="addressLine1" value="<%= booking.addressLine1  %>"/>
+      </nav>
+    <body>
+            <div class="container text-center">
+                <h2>Edit you service request!</h2>
+            </div>
+                <div class="container" style="width: 400px;">
+                    <form class="form-signin" action="/customerBookings/<%= booking._id %>?_method=PUT" method="POST">
+                            <h4>Location Details</h4>  
+                                <label for="addressLine1">Address Line - 1:</label>
+                                <input class="form-control" type="text" class ="fields" name="addressLine1" value="<%= booking.addressLine1  %>"/>
+                                <br>
+                                <label for="addressLine2">Address Line - 2:</label>
+                                <input class="form-control" type="text" class ="fields" name="addressLine2" value="<%= booking.addressLine2  %>" />
+                                <br>  
+                                <label for="city">City:</label>
+                                <input class="form-control" type="text" class ="fields" name="city" value="<%= booking.city  %>" />
+                                <br>
+                            <label for="province">Province:</label>
+                            <select name="province" value="<%= booking.province  %>">
+                                <option value="ON">ON</option>
+                                <option value="BC">BC</option>
+                                <option value="AB">AB</option>
+                            </select> 
                             <br>
-                            <label for="addressLine2">Address Line - 2:</label>
-                            <input class="form-control" type="text" class ="fields" name="addressLine2" value="<%= booking.addressLine2  %>" />
-                            <br>  
-                            <label for="city">City:</label>
-                            <input class="form-control" type="text" class ="fields" name="city" value="<%= booking.city  %>" />
+                                <label for="postalCode">Postal Code:</label>
+                                <input class="form-control" type="text" class ="fields" name="postalCode" value="<%= booking.postalCode  %>"/>
                             <br>
-                        <label for="province">Province:</label>
-                        <select name="province" value="<%= booking.province  %>">
-                            <option value="ON">ON</option>
-                            <option value="BC">BC</option>
-                            <option value="AB">AB</option>
-                        </select> 
-                        <br>
-                            <label for="postalCode">Postal Code:</label>
-                            <input class="form-control" type="text" class ="fields" name="postalCode" value="<%= booking.postalCode  %>"/>
-                        <br>
-                        <h4>Service Details</h4>
-                        <br>
-                        <select class="form-control" name="serviceType" value="<%= booking.serviceType  %>">
-                            <option value="Electrical">Electrical</option>
-                            <option value="Cleaning">Cleaning</option>
-                            <option value="Plumbing">Plumbing</option>
-                            <option value="Carpentry">Carpentry</option>
-                            <option value="Duct Cleaning">Duct Cleaning</option>
-                            <option value="Lawn Mowing">Lawn Mowing</option>
-                            <option value="Roofing">Roofing</option>
-                        </select> 
-                        <br>
-                            <label for="serviceDate">Service Date:</label>
-                            <input class="form-control" type="text" class ="fields" name="serviceDate" value="<%= booking.serviceDate  %>"/>
-                        <br>
-                        <button class="btn btn-primary text-center" type="submit" name="submit">Save</button>
-                </form>   
-                <div class="text-center">
-                    <a href="/"> Main Page</a>
-                </div>  
-            </div>            
-        <br>  
-        <script>
-            $(document).ready(function(){
-              var date_input=$('input[name="serviceDate"]'); //our date input has the name "date"
-              var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-              var options={
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-              };
-              date_input.datepicker(options);
-            })
-        </script>      
-</body>
+                            <h4>Service Details</h4>
+                            <br>
+                            <select class="form-control" name="serviceType" value="<%= booking.serviceType  %>">
+                                <option value="Electrical">Electrical</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Carpentry">Carpentry</option>
+                                <option value="Duct Cleaning">Duct Cleaning</option>
+                                <option value="Lawn Mowing">Lawn Mowing</option>
+                                <option value="Roofing">Roofing</option>
+                            </select> 
+                            <br>
+                                <label for="serviceDate">Service Date:</label>
+                                <input class="form-control" type="text" class ="fields" name="serviceDate" value="<%= booking.serviceDate  %>"/>
+                            <br>
+                            <button class="btn btn-primary text-center" type="submit" name="submit">Save</button>
+                    </form>   
+                    <div class="text-center">
+                        <a href="/"> Main Page</a>
+                    </div>  
+                </div>            
+            <br>  
+            <script>
+                $(document).ready(function(){
+                  var date_input=$('input[name="serviceDate"]'); //our date input has the name "date"
+                  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                  var options={
+                    format: 'mm/dd/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                  };
+                  date_input.datepicker(options);
+                })
+            </script>      
+    </body>
+</div>
+
+<div>
+    <footer>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; bottom: 0; width: 98%;  margin-left: 1%; margin-right: 1%;">
+        <h6 class="display-6 navbar-text">&copy; Team003-COMP231 Copyright 2021. All Rights reserved.</h6>
+      </nav>
+    </footer>
+  </div>
 </html>

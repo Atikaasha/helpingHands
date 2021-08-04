@@ -41,3 +41,12 @@ const getErrorMessage = function(err) {
 	// Return the message error
 	return message;
 };
+
+exports.about = function (req, res) {
+	res.render('about', {
+		title: 'About'
+	});
+	session.userName = req.user? req.user.username: '';
+	session.userFullName = req.user? req.user.fullName: '';
+	//console.log('User email: '+req.user? req.user.email: '');
+};

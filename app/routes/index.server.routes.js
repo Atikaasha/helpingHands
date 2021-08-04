@@ -5,4 +5,5 @@ const index = require('../controllers/index.server.controller');
 module.exports = function(app) {
 	// Mount the 'index' controller's 'render' method
 	app.get('/', index.render);
+	app.get('/aboutUs', index.about);
 };
